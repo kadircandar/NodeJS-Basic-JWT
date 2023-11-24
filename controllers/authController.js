@@ -29,7 +29,7 @@ var sign_in = function(req, res) {
             if (!user || !user.comparePassword(req.body.password)) {
                 return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
             }
-            return res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, 'RESTFULAPIs') });
+            return res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, process.env.SECRET) });
 
         })
         .catch((err )=>{
